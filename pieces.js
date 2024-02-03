@@ -12,4 +12,10 @@ const prixElement = document.createElement("p");
 prixElement.innerText = `Prix: ${article.prix} €`;
 const categorieElement = document.createElement("p");
 categorieElement.innerText = article.categorie;
-console.log(categorieElement.innerText);
+
+const sectionFiches = document.querySelector(".fiches");
+sectionFiches.appendChild(imageElement);
+sectionFiches.appendChild(nomElement);
+sectionFiches.appendChild(prixElement);
+sectionFiches.appendChild(categorieElement);
+
