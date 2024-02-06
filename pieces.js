@@ -43,4 +43,12 @@ for (let i = 0; i < pieces.length; i++) {
     return a.prix - b.prix;
    })
    console.log(piecesOrdonnes);
- })
+ });
+
+ const boutonFiltrer = document.querySelector('.btn-filtrer');
+    boutonFiltrer.addEventListener('click',function(){
+    const piecesFiltrer = pieces.filter(function(piece){
+        return piece.prix <= 35
+    })
+    console.log(piecesFiltrer);
+});
