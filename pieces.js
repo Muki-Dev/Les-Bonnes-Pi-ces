@@ -1,47 +1,37 @@
-// Rècuperation des pièces depuis le fichier JSON
-const reponse = await fetch("pieces-autos.json");
+// Récupération des pièces depuis le fichier JSON
+const reponse = await fetch('pieces-autos.json');
 const pieces = await reponse.json();
 
-for(let i = 0; i < pieces.length; i++){
-// Créez de nouveaux élément dans le DOM
-const imageElement = document.createElement("img");
-imageElement.src = pieces[i].image;
+for (let i = 0; i < pieces.length; i++) {
 
-const nomElement = document.createElement("h2");
-nomElement.innerText = pieces[i].nom;
+    const article = pieces[i];
+    // Récupération de l'élément du DOM qui accueillera les fiches
+    const sectionFiches = document.querySelector(".fiches");
+    // Création d’une balise dédiée à une pièce automobile
+    const pieceElement = document.createElement("article");
+    // Création des balises 
+    const imageElement = document.createElement("img");
+    imageElement.src = article.image;
+    const nomElement = document.createElement("h2");
+    nomElement.innerText = article.nom;
+    const prixElement = document.createElement("p");
+    prixElement.innerText = `Prix: ${article.prix} € (${article.prix < 35 ? "€" : "€€€"})`;
+    const categorieElement = document.createElement("p");
+    categorieElement.innerText = article.categorie ?? "(aucune catégorie)";
+    const descriptionElement = document.createElement("p");
+    descriptionElement.innerText = article.description ?? "Pas de description pour le moment.";
+    const stockElement = document.createElement("p");
+    stockElement.innerText = article.disponibilite ? "En stock" : "Rupture de stock";
+    
+    // On rattache la balise article a la section Fiches
+    sectionFiches.appendChild(pieceElement);
+    // On rattache l’image à pieceElement (la balise article)
+    pieceElement.appendChild(imageElement);
+    pieceElement.appendChild(nomElement);
+    pieceElement.appendChild(prixElement);
+    pieceElement.appendChild(categorieElement);
+    //Ajout des éléments au DOM pour l'exercice
+    pieceElement.appendChild(descriptionElement);
+    pieceElement.appendChild(stockElement);
 
-let prixElement = document.createElement("p");
-prixElement.innerText = `Prix: ${pieces[i].prix} €`;
-
-let categorieElement = document.createElement("p");
-categorieElement.innerText = pieces[i].categorie;
-
-let descriptionElement = document.createElement("p");
-descriptionElement.innerText = pieces[i].description;
-
-let disponibiliteElement = document.createElement("p");
-disponibiliteElement.innerText = pieces[i].disponibilite;
-
-
-
-const sectionFiches = document.querySelector(".fiches");
-sectionFiches.appendChild(imageElement);
-sectionFiches.appendChild(nomElement);
-sectionFiches.appendChild(prixElement);
-sectionFiches.appendChild(categorieElement);
-sectionFiches.appendChild(descriptionElement);
-sectionFiches.appendChild(disponibiliteElement);
-
-//Vérification de données
-prixElement.innerText = `Prix: ${pieces[i].prix} € (${pieces[i].prix < 35 ? "€":"€€€"})`
-disponibiliteElement.innerText = pieces[i].disponibilite ? "En Stock" : "Rupture de stock";
-categorieElement.innerText = pieces[i].categorie ?? "(aucune categorie)";
-descriptionElement.innerText = pieces[i].description ?? ("Pas de description pour le moment.")
-document.body.appendChild(prixElement,categorieElement,descriptionElement,disponibiliteElement);
-
-
-
-
-}
-
-
+ }
