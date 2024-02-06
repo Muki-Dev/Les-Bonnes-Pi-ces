@@ -52,3 +52,11 @@ for (let i = 0; i < pieces.length; i++) {
     })
     console.log(piecesFiltrer);
 });
+
+const boutonDescription = document.querySelector('.btn-description');
+boutonDescription.addEventListener('click',function(){
+    const filtrerDescription = pieces.filter(function(piece){
+        return piece.description;
+    })
+    console.log(filtrerDescription);
+})
