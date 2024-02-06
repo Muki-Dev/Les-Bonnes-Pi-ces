@@ -45,6 +45,16 @@ for (let i = 0; i < pieces.length; i++) {
    console.log(piecesOrdonnes);
  });
 
+ 
+ const boutonTrierDecroissant = document.querySelector('.btn-trier-decroissant');
+ boutonTrierDecroissant.addEventListener('click',function(){
+   const piecesOrdonnes = Array.from(pieces);
+   piecesOrdonnes.sort(function(a,b){
+    return b.prix - a.prix;
+   })
+   console.log(piecesOrdonnes);
+ });
+
  const boutonFiltrer = document.querySelector('.btn-filtrer');
     boutonFiltrer.addEventListener('click',function(){
     const piecesFiltrer = pieces.filter(function(piece){
