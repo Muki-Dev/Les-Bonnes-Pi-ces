@@ -77,6 +77,16 @@ boutonDescription.addEventListener('click',function(){
     genererPieces(filtrerDescription);
 })
 
+const inputPrixMax = document.querySelector('#prix-max');
+
+inputPrixMax.addEventListener('input',function(){
+   const piecesFiltrer = pieces.filter(function(piece){
+    return piece.prix <= inputPrixMax.value;
+   })
+    document.querySelector('.fiches').innerHTML = '';
+    genererPieces(piecesFiltrer);
+})
+
 const noms = pieces.map(piece => piece.nom);
 for(let i = pieces.length - 1 ; i >= 0 ; i--){
     if(pieces[i].prix > 35){
