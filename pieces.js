@@ -1,10 +1,9 @@
 // Récupération des pièces depuis le fichier JSON
-const reponse = await fetch('pieces-autos.json');
-const pieces = await reponse.json();
+const pieces = await fetch('pieces-autos.json').then(pieces => pieces.json());
 
-for (let i = 0; i < pieces.length; i++) {
-
-    const article = pieces[i];
+function genererPieces(pieces){
+    for (let i = 0; i < pieces.length; i++) {
+        const article = pieces[i];
     // Récupération de l'élément du DOM qui accueillera les fiches
     const sectionFiches = document.querySelector(".fiches");
     // Création d’une balise dédiée à une pièce automobile
@@ -22,7 +21,7 @@ for (let i = 0; i < pieces.length; i++) {
     descriptionElement.innerText = article.description ?? "Pas de description pour le moment.";
     const stockElement = document.createElement("p");
     stockElement.innerText = article.disponibilite ? "En stock" : "Rupture de stock";
-    
+
     // On rattache la balise article a la section Fiches
     sectionFiches.appendChild(pieceElement);
     // On rattache l’image à pieceElement (la balise article)
@@ -33,8 +32,11 @@ for (let i = 0; i < pieces.length; i++) {
     //Ajout des éléments au DOM pour l'exercice
     pieceElement.appendChild(descriptionElement);
     pieceElement.appendChild(stockElement);
+     }
+    
+}
 
- }
+genererPieces(pieces);
 
  const boutonTrier = document.querySelector('.btn-trier');
  boutonTrier.addEventListener('click',function(){
@@ -42,7 +44,8 @@ for (let i = 0; i < pieces.length; i++) {
    piecesOrdonnes.sort(function(a,b){
     return a.prix - b.prix;
    })
-   console.log(piecesOrdonnes);
+   document.querySelector('.fiches').innerHTML = '';
+   genererPieces(piecesOrdonnes);
  });
 
  
@@ -52,7 +55,8 @@ for (let i = 0; i < pieces.length; i++) {
    piecesOrdonnes.sort(function(a,b){
     return b.prix - a.prix;
    })
-   console.log(piecesOrdonnes);
+   document.querySelector('.fiches').innerHTML = '';
+   genererPieces(piecesOrdonnes);
  });
 
  const boutonFiltrer = document.querySelector('.btn-filtrer');
@@ -60,7 +64,8 @@ for (let i = 0; i < pieces.length; i++) {
     const piecesFiltrer = pieces.filter(function(piece){
         return piece.prix <= 35
     })
-    console.log(piecesFiltrer);
+    document.querySelector('.fiches').innerHTML = '';
+    genererPieces(piecesFiltrer);
 });
 
 const boutonDescription = document.querySelector('.btn-description');
@@ -68,7 +73,8 @@ boutonDescription.addEventListener('click',function(){
     const filtrerDescription = pieces.filter(function(piece){
         return piece.description;
     })
-    console.log(filtrerDescription);
+    document.querySelector('.fiches').innerHTML = '';
+    genererPieces(filtrerDescription);
 })
 
 const noms = pieces.map(piece => piece.nom);
