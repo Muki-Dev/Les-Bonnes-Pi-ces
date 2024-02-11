@@ -22,7 +22,14 @@ pieceElement.appendChild(avisElement);
 export function ajoutListenerEnvoyerAvis() {
     const formulaireAvis = document.querySelector(".formulaire-avis");
     formulaireAvis.addEventListener("submit", function (event) {
-    /* ... */
+    event.preventDefault();
+    // Création de l’objet du nouvel avis.
+const avis = {
+    pieceId: parseInt(event.target.querySelector("[name=piece-id]").value),
+    utilisateur: event.target.querySelector("[name=utilisateur").value,
+    commentaire: event.target.querySelector("[name=commentaire]").value,
+ };
+ 
     });
  }
  
