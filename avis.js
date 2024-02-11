@@ -18,3 +18,11 @@ pieceElement.appendChild(avisElement);
    
     }
 }
+
+export function ajoutListenerEnvoyerAvis() {
+    const formulaireAvis = document.querySelector(".formulaire-avis");
+    formulaireAvis.addEventListener("submit", function (event) {
+    /* ... */
+    });
+ }
+ 
