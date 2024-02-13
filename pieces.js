@@ -175,4 +175,4 @@ const boutonMettreAJour = document.querySelector(".btn-maj");
 boutonMettreAJour.addEventListener("click", function () {
    window.localStorage.removeItem("pieces");
 });
-afficherGraphiqueAvis();
+await afficherGraphiqueAvis();
